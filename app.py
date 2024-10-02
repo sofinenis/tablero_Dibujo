@@ -27,8 +27,6 @@ def encode_image_to_base64(image_path):
 # Streamlit 
 st.set_page_config(page_title='Tablero Inteligente')
 st.title('Tablero Inteligente')
-#image = Image.open('OIG9.jpg')
-#st.image(image, width=350) 
 with st.sidebar:
     st.subheader("Acerca de:")
     st.subheader("En esta aplicación veremos la capacidad que ahora tiene una máquina de interpretar un boceto")
@@ -73,50 +71,6 @@ api_key = os.environ['OPENAI_API_KEY']
 # Initialize the OpenAI client with the API key
 client = OpenAI(api_key=api_key)
 
-
-#if show_details:
-    # Text input for additional details about the image, shown only if toggle is True
-additional_details = st.text_area("Adiciona contexto de la imagen aqui:")
-profile_ = st.radio(
-    "Selecciona si quieres alguna experticia",
-    ["Matemáticas", "Historia", "Programación","Mejoramiento de imágenes"],index=None)
-
-profile_Math="""You are an expert in solving mathematical equations and you solve 
-                  by showing step by step what you do, always solve the equation on image. 
-                  You always use LaTeX format to write all the mathematical formulas of the answer.
-                  You have a MathJax render environment.
-                  - Any LaTeX text between single dollar sign ($) will be rendered as a TeX formula;
-                  - Use $(tex_formula)$ in-line delimiters to display equations instead of backslash;
-                  - The render environment only uses $ (single dollarsign) as a container delimiter, never output $$.
-                  Example: $x^2 + 3x$ is output for "x² + 3x" to appear as TeX.`
-                  Example: $ \int (x^2 ) is output ∫ x²dx
-                  Example: $ ^\circ is output °
-                  Example:$  \frac is output /
-                  Example:$ \(x^2 ) is output x²
-                  Example :$ \sqrt is output √
-                  Example :$ \cdot is ⋅
-                """
-profile_Hist=""" Eres un experto en contar historias infantiles, crea una breve historia a partir de la imagen
-                 , la historia debe ser breve.
-                 """ 
-profile_Prog=""" Eres un experto en programación, describe lo que realiza el código que aparece en la imagen y si 
-                 el código tiene mala sintaxis o está equivocado corrígelo.
-                 """ 
-
-profile_imgenh =""" Do not mention that it is a simple drawing, describe briefly all the objects that appear in the image in spanish
-                 """ 
-
-if profile_ == "Matemáticas":
-   Expert= profile_Math  
-if profile_ == "Historia":
-   Expert= profile_Hist
-if profile_ == "Programación":
-   Expert= profile_Prog 
-if profile_ == "Mejoramiento de imágenes":
-   Expert= profile_imgenh      
-#else :
-#   Expert= " "
-# Button to trigger the analysis
 analyze_button = st.button("Analiza la imagen", type="secondary")
 
 # Check if an image has been uploaded, if the API key is available, and if the button has been pressed
@@ -134,7 +88,7 @@ if canvas_result.image_data is not None and api_key and analyze_button:
            image_.save('img.png') 
         base64_image = encode_image_to_base64("img.png")
             
-        prompt_text = (f"{Expert},describe in spanish briefly the image,{additional_details}")
+        prompt_text = (f"Describe in spanish briefly the image")
     
       # Create the payload for the completion request
         messages = [
