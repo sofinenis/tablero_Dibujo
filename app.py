@@ -12,8 +12,7 @@ import matplotlib.pyplot as plt
 import streamlit as st
 from streamlit_drawable_canvas import st_canvas
 
-if 'mi_respuesta' not in st.session_state:
-    st.session_state.mi_respuesta = None
+Expert=" "
     
 def encode_image_to_base64(image_path):
     try:
