@@ -33,7 +33,7 @@ with st.sidebar:
 st.subheader("Dibuja el boceto en el panel  y presiona el botón para analizarla")
 
 # Add canvas component
-
+bg_image = st.sidebar.file_uploader("Cargar Imagen:", type=["png", "jpg"])
 # Specify canvas parameters in application
 drawing_mode = "freedraw"
 stroke_width = st.sidebar.slider('Selecciona el ancho de línea', 1, 30, 5)
