@@ -13,6 +13,7 @@ import streamlit as st
 from streamlit_drawable_canvas import st_canvas
 
 Expert=" "
+profile_imgenh=" "
     
 def encode_image_to_base64(image_path):
     try:
