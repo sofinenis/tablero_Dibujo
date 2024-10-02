@@ -83,9 +83,7 @@ if canvas_result.image_data is not None and api_key and analyze_button:
         input_image.save('img.png')
         
       # Codificar la imagen en base64
-        #if bg_image:
-        #   image_ = Image.open(canvas_result) #canvas_result
-         #  image_.save('img.png') 
+ 
         base64_image = encode_image_to_base64("img.png")
             
         prompt_text = (f"Describe in spanish briefly the image")
